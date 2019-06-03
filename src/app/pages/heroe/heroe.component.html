@@ -12,27 +12,27 @@
 
 <div class="row animated fadeIn faster">
     <div class="col">
-        <form>
+        <form (ngSubmit)="guardar(form)" #form="ngForm">
             <div class="form-group">
                 <label>Firebase ID</label>
-                <input type="text" class="form-control" placeholder="Firebase ID" disabled="disabled">
+                <input [(ngModel)]="heroe.id" name="id" type="text" class="form-control" placeholder="Firebase ID" disabled="disabled">
                 <small class="form-text text-muted">Este campo es autogenerado</small>
             </div>
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre del héroe" required>
+                <input [(ngModel)]="heroe.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del héroe" required>
             </div>
             <div class="form-group">
                 <label>Poder</label>
-                <input type="text" class="form-control" placeholder="Poder del héroe">
+                <input [(ngModel)]="heroe.poder" name="poder" type="text" class="form-control" placeholder="Poder del héroe">
             </div>
             <div class="form-group">
                 <label class="d-block">Estado</label>
-                <button class="btn btn-outline-success w-50" type="button">
-                  <i class="fa fa-smile-wink"></i>Vivo
+                <button *ngIf="heroe.vivo" (click)="heroe.vivo = false" class="btn btn-outline-success w-50" type="button">
+                  <i class="fa fa-smile-wink"></i> Vivo
                 </button>
-                <button class="btn btn-outline-danger w-50" type="button">
-                  <i class="fa fa-dizzy"></i>Muerto
+                <button *ngIf="!heroe.vivo" (click)="heroe.vivo = true" class="btn btn-outline-danger w-50" type="button">
+                  <i class="fa fa-dizzy"></i> Muerto
                 </button>
             </div>
             <hr>
