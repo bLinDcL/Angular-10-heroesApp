@@ -13,10 +13,19 @@ export class HeroesService {
   constructor( private httpClient: HttpClient) { }
 
   crearHeroe( heroe: HeroeModel ) {
-    return this.httpClient.post( `${this.url}/heroes.json`, heroe ).pipe(map( (resp: any) => {
+    return this.httpClient.post( `${ this.url }/heroes.json`, heroe ).pipe(map( (resp: any) => {
       heroe.id = resp.name;
       return heroe;
     }));
+  }
+
+  actualizarHeroe( heroe: HeroeModel ) {
+    const HEROETEMP = {
+      ...heroe
+    };
+    delete HEROETEMP.id;
+
+    return this.httpClient.put(`${ this.url }/heroes/${ heroe.id }.json`, HEROETEMP);
   }
 
 }
