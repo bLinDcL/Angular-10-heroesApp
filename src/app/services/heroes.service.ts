@@ -25,7 +25,11 @@ export class HeroesService {
     };
     delete HEROETEMP.id;
 
-    return this.httpClient.put(`${ this.url }/heroes/${ heroe.id }.json`, HEROETEMP);
+    return this.httpClient.put( `${ this.url }/heroes/${ heroe.id }.json`, HEROETEMP );
+  }
+
+  obtenerHeroe( id: string ) {
+    return this.httpClient.get( `${ this.url}/heroes/${ id }.json` );
   }
 
   obtenerHeroes() {
