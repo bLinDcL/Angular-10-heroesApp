@@ -19,6 +19,10 @@ export class HeroesService {
     }));
   }
 
+  eliminarHeroe( id: string ){
+    return this.httpClient.delete( `${ this.url}/heroes/${ id }.json` );
+  }
+
   actualizarHeroe( heroe: HeroeModel ) {
     const HEROETEMP = {
       ...heroe
