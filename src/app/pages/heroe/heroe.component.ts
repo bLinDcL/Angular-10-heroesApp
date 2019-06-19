@@ -47,7 +47,7 @@ export class HeroeComponent implements OnInit {
         text: 'Se actualizó correctamente',
         type: 'success'
       });
-    })
+    });
   }
 
 }

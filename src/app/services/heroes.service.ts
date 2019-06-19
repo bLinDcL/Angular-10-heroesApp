@@ -28,4 +28,27 @@ export class HeroesService {
     return this.httpClient.put(`${ this.url }/heroes/${ heroe.id }.json`, HEROETEMP);
   }
 
+  obtenerHeroes() {
+    return this.httpClient.get( `${ this.url}/heroes.json` ).pipe( map( resp => this.crearArregloHeroes(resp) ));
+    // return this.httpClient.get( `${ this.url}/heroes.json` ).pipe( map( this.crearArregloHeroes ));
+    // El primer argumento de respuesta es el que retorna el map
+  }
+
+  private crearArregloHeroes( heroesObj: Object ) {
+    const heroes: HeroeModel[] = [];
+    
+    if ( heroesObj === null ) {
+      return [];
+    }
+
+    Object.keys( heroesObj ).forEach( key => {
+        const heroe : HeroeModel = heroesObj[key];
+        heroe.id = key;
+
+        heroes.push( heroe );
+    });
+    
+    return heroes;
+  }
+
 }
